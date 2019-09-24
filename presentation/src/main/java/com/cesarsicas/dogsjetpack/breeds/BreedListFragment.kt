@@ -2,18 +2,19 @@ package com.cesarsicas.dogsjetpack.breeds
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import com.cesarsicas.dogsjetpack.R
-import com.cesarsicas.dogsjetpack.breeds.model.Breed
 import kotlinx.android.synthetic.main.fragment_breed_list.*
 
 
 internal class BreedListFragment : Fragment() {
+    lateinit var viewModel: BreedListFragmentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,22 +27,19 @@ internal class BreedListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel = ViewModelProviders.of(this)[BreedListFragmentViewModel::class.java]
+
         val layoutManager = LinearLayoutManager(context)
         breedsList.layoutManager = layoutManager
 
-        val adapter = BreedListAdapter(context, getBreeds())
-        breedsList.adapter = adapter
+        val breeds= viewModel.getBreedsLiveData()
 
-    }
+        breeds.observe(this, Observer {
+            val adapter = BreedListAdapter(context, it)
+            breedsList.adapter = adapter
+        })
 
-    private fun getBreeds(): List<Breed> {
-       return  listOf(
-           Breed("Affenpinscher", "", "", "", "", "https://cdn2.thedogapi.com/images/hd1iiHXjK.jpg" ),
-           Breed("Afghan Hound", "", "", "", "", "https://cdn2.thedogapi.com/images/hd1iiHXjK.jpg" ),
-           Breed("Affenpinscher", "", "", "", "", "https://cdn2.thedogapi.com/images/rkiByec47_150x150.jpg" ),
-           Breed("Afghan Hound", "", "", "", "", "https://cdn2.thedogapi.com/images/rkiByec47_150x150.jpg" ),
-           Breed("Affenpinscher", "", "", "", "", "https://cdn2.thedogapi.com/images/GYC8Oeux6.jpg" ),
-           Breed("Afghan Hound", "", "", "", "", "https://cdn2.thedogapi.com/images/S1_8kx5Nm_150x150.jpg" ))
+        viewModel.refreshBreeds()
     }
 
 
