@@ -1,6 +1,6 @@
-package com.cesarsicas.domain.breeds.interactors
+package com.cesarsicas.domain.features.breeds.interactors
 
-import com.cesarsicas.domain.breeds.model.BreedDomain
+import com.cesarsicas.domain.features.breeds.model.BreedDomain
 
 class GetBreeds {
 

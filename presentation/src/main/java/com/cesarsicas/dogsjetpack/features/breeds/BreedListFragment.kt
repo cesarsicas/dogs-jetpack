@@ -1,4 +1,4 @@
-package com.cesarsicas.dogsjetpack.breeds
+package com.cesarsicas.dogsjetpack.features.breeds
 
 
 import android.os.Bundle

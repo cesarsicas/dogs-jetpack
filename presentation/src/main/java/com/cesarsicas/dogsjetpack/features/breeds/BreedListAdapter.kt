@@ -1,4 +1,4 @@
-package com.cesarsicas.dogsjetpack.breeds
+package com.cesarsicas.dogsjetpack.features.breeds
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.cesarsicas.dogsjetpack.R
-import com.cesarsicas.dogsjetpack.breeds.model.Breed
+import com.cesarsicas.dogsjetpack.features.breeds.model.Breed
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.breed_item.view.*
 

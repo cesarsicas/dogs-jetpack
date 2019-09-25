@@ -1,6 +1,6 @@
-package com.cesarsicas.dogsjetpack.breeds.model
+package com.cesarsicas.dogsjetpack.features.breeds.model
 
-import com.cesarsicas.domain.breeds.model.BreedDomain
+import com.cesarsicas.domain.features.breeds.model.BreedDomain
 
 internal data class Breed(val name:String,
                           val temperament:String,

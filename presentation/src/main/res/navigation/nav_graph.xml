@@ -7,6 +7,6 @@
 
     <fragment
         android:id="@+id/breedListFragment"
-        android:name="com.cesarsicas.dogsjetpack.breeds.BreedListFragment"
+        android:name="com.cesarsicas.dogsjetpack.features.breeds.BreedListFragment"
         android:label="BreedListFragment" />
 </navigation>

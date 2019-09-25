@@ -1,4 +1,4 @@
-package com.cesarsicas.domain.breeds.model
+package com.cesarsicas.domain.features.breeds.model
 
 data class BreedDomain(val name:String,
                           val temperament:String,

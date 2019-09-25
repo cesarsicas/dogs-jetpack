@@ -1,9 +1,9 @@
-package com.cesarsicas.dogsjetpack.breeds
+package com.cesarsicas.dogsjetpack.features.breeds
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.cesarsicas.dogsjetpack.breeds.model.Breed
-import com.cesarsicas.domain.breeds.interactors.GetBreeds
+import com.cesarsicas.dogsjetpack.features.breeds.model.Breed
+import com.cesarsicas.domain.features.breeds.interactors.GetBreeds
 
 internal class BreedListFragmentViewModel : ViewModel(){
 
