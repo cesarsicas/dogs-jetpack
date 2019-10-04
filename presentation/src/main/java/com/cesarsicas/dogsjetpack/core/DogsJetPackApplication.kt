@@ -14,5 +14,8 @@ class DogsJetPackApplication : Application() {
         appContext = applicationContext
 
         DatabaseBuilder.build(this)
+
+
+
     }
 }

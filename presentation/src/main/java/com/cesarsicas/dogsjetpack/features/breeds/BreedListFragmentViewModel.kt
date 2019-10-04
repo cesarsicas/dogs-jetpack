@@ -1,11 +1,13 @@
 package com.cesarsicas.dogsjetpack.features.breeds
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.cesarsicas.data.features.breeds.repository.BreedsRepositoryImpl
 import com.cesarsicas.dogsjetpack.features.breeds.model.Breed
 import com.cesarsicas.domain.features.breeds.interactors.GetBreeds
 
-internal class BreedListFragmentViewModel : ViewModel(){
+internal class BreedListFragmentViewModel(val app: Application) : AndroidViewModel(app) {
 
         //todo inject
      private val getBreeds: GetBreeds= GetBreeds()
@@ -20,6 +22,6 @@ internal class BreedListFragmentViewModel : ViewModel(){
 
 
     fun refreshBreeds(){
-        breedsLiveData.value = getBreeds.execute().map { Breed.fromDomainObject(it)}
+        breedsLiveData.value = getBreeds.execute(BreedsRepositoryImpl(app)).map { Breed.fromDomainObject(it)}
     }
 }
