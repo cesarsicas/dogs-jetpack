@@ -22,6 +22,8 @@ internal class BreedListFragmentViewModel(val app: Application) : AndroidViewMod
 
 
     fun refreshBreeds(){
-        breedsLiveData.value = getBreeds.execute(BreedsRepositoryImpl(app)).map { Breed.fromDomainObject(it)}
+        val result = getBreeds.execute(BreedsRepositoryImpl(app)).map { Breed.fromDomainObject(it)}
+
+        breedsLiveData.value = result
     }
 }

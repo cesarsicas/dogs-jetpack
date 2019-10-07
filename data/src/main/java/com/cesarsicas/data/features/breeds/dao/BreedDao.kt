@@ -11,6 +11,9 @@ interface BreedDao {
     @Insert
     fun insertAll(vararg breeds: Breed)
 
+    @Insert
+    fun insertFromList(reeds: List<Breed>)
+
     @Delete
     fun delete(breed: Breed)
 

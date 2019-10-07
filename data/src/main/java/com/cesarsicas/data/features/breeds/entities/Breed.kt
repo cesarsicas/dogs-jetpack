@@ -7,7 +7,7 @@ import com.cesarsicas.domain.features.breeds.model.BreedDomain
 
 @Entity
 data class Breed (
-    @PrimaryKey val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int,
     val name:String,
     val temperament:String,
     val height:String,
