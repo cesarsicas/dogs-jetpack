@@ -1,8 +1,7 @@
 package com.cesarsicas.dogsjetpack.features.breeds
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.*
 import com.cesarsicas.data.features.breeds.repository.BreedsRepositoryImpl
 import com.cesarsicas.dogsjetpack.features.breeds.model.Breed
 import com.cesarsicas.domain.features.breeds.interactors.GetBreeds
@@ -15,6 +14,7 @@ internal class BreedListFragmentViewModel(val app: Application) : AndroidViewMod
      private var breedsLiveData = MutableLiveData<List<Breed>>()
 
 
+
     fun getBreedsLiveData(): MutableLiveData<List<Breed>> {
         breedsLiveData.value = listOf()
         return breedsLiveData
@@ -22,8 +22,17 @@ internal class BreedListFragmentViewModel(val app: Application) : AndroidViewMod
 
 
     fun refreshBreeds(){
-        val result = getBreeds.execute(BreedsRepositoryImpl(app)).map { Breed.fromDomainObject(it)}
+        val interactorResult = getBreeds.execute(BreedsRepositoryImpl(app))
 
-        breedsLiveData.value = result
+
+        Transformations.map(interactorResult) {
+                newData -> {
+                    breedsLiveData.postValue(newData.map {
+                        Breed.fromDomainObject(it)
+                    })
+                }
+        }
     }
+
+
 }

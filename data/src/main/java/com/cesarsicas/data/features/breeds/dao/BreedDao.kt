@@ -1,24 +1,26 @@
 package com.cesarsicas.data.features.breeds.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.cesarsicas.data.features.breeds.entities.Breed
+import com.cesarsicas.data.features.breeds.entities.BreedEntity
+
 
 @Dao
 interface BreedDao {
     @Query("SELECT * FROM breed")
-    fun getAll(): List<Breed>
+    fun getAll(): LiveData<List<BreedEntity>>
 
     @Insert
-    fun insertAll(vararg breeds: Breed)
+    fun insertAll(vararg breeds: BreedEntity)
 
     @Insert
-    fun insertFromList(reeds: List<Breed>)
+    fun insertFromList(reeds: List<BreedEntity>)
 
     @Delete
-    fun delete(breed: Breed)
+    fun delete(breed: BreedEntity)
 
     @Update
-    fun update(breed: Breed)
+    fun update(breed: BreedEntity)
 
 //    @Query("SELECT * FROM breed WHERE i IN (:userIds)")
 //    fun loadAllByIds(userIds: IntArray): List<User>

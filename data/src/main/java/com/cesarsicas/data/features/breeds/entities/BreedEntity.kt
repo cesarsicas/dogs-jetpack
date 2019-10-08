@@ -5,8 +5,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.cesarsicas.domain.features.breeds.model.BreedDomain
 
-@Entity
-data class Breed (
+@Entity(tableName = "breed")
+data class BreedEntity (
     @PrimaryKey(autoGenerate = true) val id: Int,
     val name:String,
     val temperament:String,

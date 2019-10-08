@@ -40,6 +40,10 @@ internal class BreedListFragment : Fragment() {
         })
 
         viewModel.refreshBreeds()
+//        button.setOnClickListener {
+//            viewModel.refreshBreeds()
+//        }
+
     }
 
 

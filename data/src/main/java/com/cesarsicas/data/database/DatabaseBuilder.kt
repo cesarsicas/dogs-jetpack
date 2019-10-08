@@ -5,7 +5,7 @@ import androidx.annotation.NonNull
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.cesarsicas.data.features.breeds.entities.Breed
+import com.cesarsicas.data.features.breeds.entities.BreedEntity
 import java.io.IOException
 import java.nio.charset.Charset
 import java.util.concurrent.Executors
@@ -22,7 +22,7 @@ object DatabaseBuilder {
 
         //todo shouldnt allow queries on main thread, just for testing
 
-        return Room.databaseBuilder(
+        val database = Room.databaseBuilder(
             applicationContext,
             AppDatabase::class.java,
             databaseName
@@ -38,7 +38,7 @@ object DatabaseBuilder {
 
                             val convertedList = list?.map {
 
-                                Breed(
+                                BreedEntity(
                                     id = 0,
                                     name = it.name,
                                     temperament = it.temperament,
@@ -50,7 +50,8 @@ object DatabaseBuilder {
 
                             }
 
-                            DatabaseBuilder.build(applicationContext).breedDao().insertFromList(convertedList!!)
+                            DatabaseBuilder.build(applicationContext).breedDao()
+                                .insertFromList(convertedList!!)
 
                         }
 
@@ -60,6 +61,7 @@ object DatabaseBuilder {
             })
             .allowMainThreadQueries().build()
 
+        return database
     }
 
     private fun loadJSONFromAsset(applicationContext: Application): String? {
