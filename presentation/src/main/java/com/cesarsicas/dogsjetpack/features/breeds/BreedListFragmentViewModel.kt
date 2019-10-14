@@ -8,31 +8,20 @@ import com.cesarsicas.domain.features.breeds.interactors.GetBreeds
 
 internal class BreedListFragmentViewModel(val app: Application) : AndroidViewModel(app) {
 
-        //todo inject
-     private val getBreeds: GetBreeds= GetBreeds()
-
-     private var breedsLiveData = MutableLiveData<List<Breed>>()
+    //todo inject
+    private val getBreeds: GetBreeds = GetBreeds()
 
 
 
-    fun getBreedsLiveData(): MutableLiveData<List<Breed>> {
-        breedsLiveData.value = listOf()
-        return breedsLiveData
-    }
-
-
-    fun refreshBreeds(){
+    fun getBreedsLiveData(): LiveData<List<Breed>> {
         val interactorResult = getBreeds.execute(BreedsRepositoryImpl(app))
 
-
-        Transformations.map(interactorResult) {
-                newData -> {
-                    breedsLiveData.postValue(newData.map {
-                        Breed.fromDomainObject(it)
-                    })
-                }
+        return Transformations.map(interactorResult) {
+                newData -> newData.map {    Breed.fromDomainObject(it) }
         }
+
     }
-
-
 }
+
+
+

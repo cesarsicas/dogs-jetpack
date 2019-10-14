@@ -32,14 +32,12 @@ internal class BreedListFragment : Fragment() {
         val layoutManager = LinearLayoutManager(context)
         breedsList.layoutManager = layoutManager
 
-        val breeds= viewModel.getBreedsLiveData()
-
-        breeds.observe(this, Observer {
+        viewModel.getBreedsLiveData().observe(this, Observer {
             val adapter = BreedListAdapter(context, it)
             breedsList.adapter = adapter
         })
 
-        viewModel.refreshBreeds()
+//        viewModel.refreshBreeds()
 //        button.setOnClickListener {
 //            viewModel.refreshBreeds()
 //        }

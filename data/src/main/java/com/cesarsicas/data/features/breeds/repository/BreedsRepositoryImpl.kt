@@ -6,7 +6,7 @@ import com.cesarsicas.data.database.DatabaseBuilder
 import com.cesarsicas.domain.features.breeds.BreedsRepository
 import com.cesarsicas.domain.features.breeds.model.BreedDomain
 import androidx.lifecycle.Transformations
-
+import com.cesarsicas.data.features.breeds.entities.BreedEntity
 
 
 class BreedsRepositoryImpl(private val application:Application) : BreedsRepository {
@@ -15,21 +15,15 @@ class BreedsRepositoryImpl(private val application:Application) : BreedsReposito
 
         val databaseLiveData =  DatabaseBuilder.build(application).breedDao().getAll()
 
-        return Transformations.map(databaseLiveData) {
-                newData -> newData.map { it.toDomainObject() }
+        return  Transformations.map(databaseLiveData, ::convert)
 
-        }
-
-
-//        val mediator  = MediatorLiveData<List<BreedDomain>>()
-//
-//        val databaseResult = DatabaseBuilder.build(application).breedDao().getAll()
-//
-//        mediator.addSource(databaseResult) { result: List<BreedEntity>? ->
-//            result?.map { it.toDomainObject() }
+//        return Transformations.map(databaseLiveData) {
+//                newData -> newData.map { it.toDomainObject() }
 //        }
-//
-//        return mediator
+
     }
 
+    private fun convert(breeds: List<BreedEntity>): List<BreedDomain> {
+        return breeds.map { it.toDomainObject() }
+    }
 }

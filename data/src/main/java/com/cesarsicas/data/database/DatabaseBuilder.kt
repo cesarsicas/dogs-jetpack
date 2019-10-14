@@ -59,7 +59,7 @@ object DatabaseBuilder {
                     }
                 }
             })
-            .allowMainThreadQueries().build()
+            .build()
 
         return database
     }
