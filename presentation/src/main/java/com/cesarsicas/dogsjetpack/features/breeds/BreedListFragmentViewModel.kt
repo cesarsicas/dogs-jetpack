@@ -17,7 +17,7 @@ internal class BreedListFragmentViewModel(val app: Application) : AndroidViewMod
         val interactorResult = getBreeds.execute(BreedsRepositoryImpl(app))
 
         return Transformations.map(interactorResult) {
-                newData -> newData.map {    Breed.fromDomainObject(it) }
+                newData -> newData.map { Breed.fromDomainObject(it) }
         }
 
     }

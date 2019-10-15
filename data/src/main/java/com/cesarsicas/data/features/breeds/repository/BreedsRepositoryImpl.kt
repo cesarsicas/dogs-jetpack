@@ -15,15 +15,9 @@ class BreedsRepositoryImpl(private val application:Application) : BreedsReposito
 
         val databaseLiveData =  DatabaseBuilder.build(application).breedDao().getAll()
 
-        return  Transformations.map(databaseLiveData, ::convert)
+        return Transformations.map(databaseLiveData) {
+                breeds -> breeds.map { it.toDomainObject() }
+        }
 
-//        return Transformations.map(databaseLiveData) {
-//                newData -> newData.map { it.toDomainObject() }
-//        }
-
-    }
-
-    private fun convert(breeds: List<BreedEntity>): List<BreedDomain> {
-        return breeds.map { it.toDomainObject() }
     }
 }

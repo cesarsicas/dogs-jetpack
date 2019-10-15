@@ -17,51 +17,53 @@ import java.lang.Exception
 
 object DatabaseBuilder {
     private const val databaseName = "dogs_jetpack_db"
+    private var INSTANCE: AppDatabase? = null
+
 
     fun build(applicationContext: Application): AppDatabase {
 
-        //todo shouldnt allow queries on main thread, just for testing
+        if(INSTANCE == null){
+            INSTANCE = Room.databaseBuilder(
+                applicationContext,
+                AppDatabase::class.java,
+                databaseName
+            )
+                .addCallback(object : RoomDatabase.Callback() {
+                    override fun onCreate(@NonNull db: SupportSQLiteDatabase) {
+                        super.onCreate(db)
+                        Executors.newSingleThreadScheduledExecutor().execute {
+                            val json = loadJSONFromAsset(applicationContext)
 
-        val database = Room.databaseBuilder(
-            applicationContext,
-            AppDatabase::class.java,
-            databaseName
-        )
-            .addCallback(object : RoomDatabase.Callback() {
-                override fun onCreate(@NonNull db: SupportSQLiteDatabase) {
-                    super.onCreate(db)
-                    Executors.newSingleThreadScheduledExecutor().execute {
-                        val json = loadJSONFromAsset(applicationContext)
+                            if (json != null) {
+                                val list = convertJsonToObject(json)
 
-                        if (json != null) {
-                            val list = convertJsonToObject(json)
+                                val convertedList = list?.map {
 
-                            val convertedList = list?.map {
+                                    BreedEntity(
+                                        id = 0,
+                                        name = it.name,
+                                        temperament = it.temperament,
+                                        height = it.height,
+                                        weight = it.weight,
+                                        originCountry = it.originCountry,
+                                        thumb = it.thumb
+                                    )
 
-                                BreedEntity(
-                                    id = 0,
-                                    name = it.name,
-                                    temperament = it.temperament,
-                                    height = it.height,
-                                    weight = it.weight,
-                                    originCountry = it.originCountry,
-                                    thumb = it.thumb
-                                )
+                                }
+
+                                build(applicationContext).breedDao()
+                                    .insertFromList(convertedList!!)
 
                             }
 
-                            DatabaseBuilder.build(applicationContext).breedDao()
-                                .insertFromList(convertedList!!)
 
                         }
-
-
                     }
-                }
-            })
-            .build()
+                })
+                .build()
+        }
 
-        return database
+        return INSTANCE!!
     }
 
     private fun loadJSONFromAsset(applicationContext: Application): String? {
