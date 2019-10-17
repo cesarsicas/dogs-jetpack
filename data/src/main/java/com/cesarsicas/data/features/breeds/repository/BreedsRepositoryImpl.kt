@@ -10,7 +10,6 @@ import com.cesarsicas.data.features.breeds.entities.BreedEntity
 
 
 class BreedsRepositoryImpl(private val application:Application) : BreedsRepository {
-
     override fun getBreeds(): LiveData<List<BreedDomain>> {
 
         val databaseLiveData =  DatabaseBuilder.build(application).breedDao().getAll()
@@ -18,6 +17,13 @@ class BreedsRepositoryImpl(private val application:Application) : BreedsReposito
         return Transformations.map(databaseLiveData) {
                 breeds -> breeds.map { it.toDomainObject() }
         }
+    }
 
+    override fun getBreedById(breedId: Int): LiveData<BreedDomain> {
+        val liveData =  DatabaseBuilder.build(application).breedDao().getById(breedId)
+
+        return Transformations.map(liveData) {
+                it.toDomainObject()
+        }
     }
 }

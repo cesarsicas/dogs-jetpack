@@ -7,4 +7,6 @@ import com.cesarsicas.domain.features.breeds.model.BreedDomain
 interface BreedsRepository {
 
     fun getBreeds(): LiveData<List<BreedDomain>>
+
+    fun getBreedById(breedId: Int): LiveData<BreedDomain>
 }

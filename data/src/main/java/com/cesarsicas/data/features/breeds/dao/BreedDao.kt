@@ -10,6 +10,9 @@ interface BreedDao {
     @Query("SELECT * FROM breed")
     fun getAll(): LiveData<List<BreedEntity>>
 
+    @Query("SELECT * FROM breed WHERE id=:id ")
+    fun getById(id: Int): LiveData<BreedEntity>
+
     @Insert
     fun insertAll(vararg breeds: BreedEntity)
 
