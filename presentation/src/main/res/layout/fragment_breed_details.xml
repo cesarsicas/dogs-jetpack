@@ -6,6 +6,7 @@
     tools:context=".features.breeds.details.BreedDetailsFragment">
 
     <TextView
+        android:id="@+id/someTextToReplace"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Hello Darkness my old friend" />

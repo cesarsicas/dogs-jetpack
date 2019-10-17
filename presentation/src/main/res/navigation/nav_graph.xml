@@ -17,5 +17,10 @@
         android:id="@+id/breedDetailsFragment"
         android:name="com.cesarsicas.dogsjetpack.features.breeds.details.BreedDetailsFragment"
         android:label="fragment_breed_details"
-        tools:layout="@layout/fragment_breed_details" />
+        tools:layout="@layout/fragment_breed_details" >
+        <argument
+            android:name="breed_id"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
 </navigation>
