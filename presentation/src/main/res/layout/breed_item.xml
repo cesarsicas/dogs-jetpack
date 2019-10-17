@@ -8,6 +8,7 @@
     android:orientation="vertical"
     app:cardPreventCornerOverlap="false"
     card_view:cardUseCompatPadding="true"
+    android:id="@+id/container"
     card_view:cardCornerRadius="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.cesarsicas.dogsjetpack.R
 import com.cesarsicas.dogsjetpack.features.breeds.model.Breed
@@ -12,7 +13,10 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.breed_item.view.*
 
 
-internal class BreedListAdapter(private val breedList:List<Breed>) : RecyclerView.Adapter<GenericViewHolder>() {
+internal class BreedListAdapter(
+    private val breedList: ArrayList<Breed>,
+    private val clicked: (Breed) -> Unit
+) : RecyclerView.Adapter<GenericViewHolder>() {
 
     val viewTypeLoading = 0
     val viewTypeBreed = 1
@@ -36,24 +40,34 @@ internal class BreedListAdapter(private val breedList:List<Breed>) : RecyclerVie
 
 
     override fun getItemViewType(position: Int): Int {
-        return if (breedList[position] != null)
-            viewTypeBreed
-        else
+        return if (breedList.isNullOrEmpty())
             viewTypeLoading
+        else
+            viewTypeBreed
     }
 
 
     override fun onBindViewHolder(holder: GenericViewHolder, position: Int) {
         if(holder is BreedViewHolder){
             val breed = breedList[position]
-            holder.breedName?.text = breed.name
+            holder.breedName.text = breed.name
             Picasso.get().load(breed.thumb).into(holder.breedImage)
+
+            holder.container.setOnClickListener{
+                clicked(breedList[position])
+            }
         }
     }
 
+    fun addItens(newBreeds:ArrayList<Breed>){
+        this.breedList.addAll(newBreeds)
+        notifyDataSetChanged()
+    }
+
     internal class BreedViewHolder(itemView: View): GenericViewHolder(itemView) {
-        val breedName:TextView? = itemView?.name
-        val breedImage:ImageView? = itemView?.imageView
+        val breedName:TextView = itemView.name
+        val breedImage:ImageView = itemView.imageView
+        val container:CardView = itemView.container
     }
 
     internal inner class ProgressViewHolder(itemView: View) : GenericViewHolder(itemView)

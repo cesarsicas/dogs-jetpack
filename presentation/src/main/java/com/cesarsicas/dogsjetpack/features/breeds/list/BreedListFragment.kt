@@ -5,12 +5,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_breed_list.*
 import androidx.recyclerview.widget.GridLayoutManager
 import com.cesarsicas.dogsjetpack.R
+import com.cesarsicas.dogsjetpack.features.breeds.model.Breed
 
 
 internal class BreedListFragment : Fragment() {
@@ -32,12 +35,20 @@ internal class BreedListFragment : Fragment() {
         val layoutManager = GridLayoutManager(activity, 2)
         breedsList.layoutManager = layoutManager
 
+        val adapter = BreedListAdapter(arrayListOf()){ breed:Breed ->
+            onBreedClicked(breed) }
+
+        breedsList.adapter = adapter
+
         viewModel.getBreedsLiveData().observe(this, Observer {
-            val adapter = BreedListAdapter(it)
-            breedsList.adapter = adapter
+            adapter.addItens( it as ArrayList<Breed>)
         })
 
     }
 
+
+    private fun onBreedClicked(breed:Breed){
+          findNavController().navigate(R.id.action_breedListFragment_to_breedDetailsFragment)
+    }
 
 }

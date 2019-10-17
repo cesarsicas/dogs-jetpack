@@ -8,5 +8,14 @@
     <fragment
         android:id="@+id/breedListFragment"
         android:name="com.cesarsicas.dogsjetpack.features.breeds.list.BreedListFragment"
-        android:label="BreedListFragment" />
+        android:label="BreedListFragment" >
+        <action
+            android:id="@+id/action_breedListFragment_to_breedDetailsFragment"
+            app:destination="@id/breedDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/breedDetailsFragment"
+        android:name="com.cesarsicas.dogsjetpack.features.breeds.details.BreedDetailsFragment"
+        android:label="fragment_breed_details"
+        tools:layout="@layout/fragment_breed_details" />
 </navigation>
