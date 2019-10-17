@@ -1,4 +1,4 @@
-package com.cesarsicas.dogsjetpack.features.breeds
+package com.cesarsicas.dogsjetpack.features.breeds.list
 
 
 import android.os.Bundle
@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.cesarsicas.dogsjetpack.R
 import kotlinx.android.synthetic.main.fragment_breed_list.*
+import androidx.recyclerview.widget.GridLayoutManager
+import com.cesarsicas.dogsjetpack.R
 
 
 internal class BreedListFragment : Fragment() {
@@ -29,18 +29,13 @@ internal class BreedListFragment : Fragment() {
 
         viewModel = ViewModelProviders.of(this)[BreedListFragmentViewModel::class.java]
 
-        val layoutManager = LinearLayoutManager(context)
+        val layoutManager = GridLayoutManager(activity, 2)
         breedsList.layoutManager = layoutManager
 
         viewModel.getBreedsLiveData().observe(this, Observer {
-            val adapter = BreedListAdapter(context, it)
+            val adapter = BreedListAdapter(it)
             breedsList.adapter = adapter
         })
-
-//        viewModel.refreshBreeds()
-//        button.setOnClickListener {
-//            viewModel.refreshBreeds()
-//        }
 
     }
 

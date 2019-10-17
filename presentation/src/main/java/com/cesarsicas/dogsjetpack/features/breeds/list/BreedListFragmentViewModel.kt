@@ -1,4 +1,4 @@
-package com.cesarsicas.dogsjetpack.features.breeds
+package com.cesarsicas.dogsjetpack.features.breeds.list
 
 import android.app.Application
 import androidx.lifecycle.*

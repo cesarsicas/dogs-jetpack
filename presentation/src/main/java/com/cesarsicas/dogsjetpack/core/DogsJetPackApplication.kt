@@ -14,12 +14,9 @@ class DogsJetPackApplication : Application() {
         super.onCreate()
         appContext = applicationContext
 
-        Stetho.initializeWithDefaults(this);
+        Stetho.initializeWithDefaults(this)
 
         DatabaseBuilder.build(this)
-
-
-
 
     }
 }
