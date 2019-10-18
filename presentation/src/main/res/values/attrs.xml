@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="InformationVewFacelift">
+        <attr name="information_label" format="string" />
+        <attr name="information_content" format="string" />
+    </declare-styleable>
+</resources>

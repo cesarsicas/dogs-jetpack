@@ -1,14 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".features.breeds.details.BreedDetailsFragment">
 
-    <TextView
-        android:id="@+id/someTextToReplace"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello Darkness my old friend" />
+    <ImageView
+        android:id="@+id/breedImage"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_pets_black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/breedName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/breedImage"
+        tools:text="Breed Name" />
+
+    <com.cesarsicas.dogsjetpack.custom.InformationViewFacelift
+        android:id="@+id/height"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.5"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="16dp"
+        app:information_content="@string/height_label"
+        app:information_label="@string/height_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/weight"
+        app:layout_constraintTop_toBottomOf="@+id/breedName" />
+
+    <com.cesarsicas.dogsjetpack.custom.InformationViewFacelift
+        android:id="@+id/weight"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.5"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="16dp"
+        app:information_content="@string/weight_label"
+        app:information_label="@string/weight_label"
+        app:layout_constraintEnd_toStartOf="@+id/height"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/breedName" />
+
+    <com.cesarsicas.dogsjetpack.custom.InformationViewFacelift
+        android:id="@+id/country"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.5"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="16dp"
+        app:information_content="@string/country_label"
+        app:information_label="@string/country_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/temperament"
+        app:layout_constraintTop_toBottomOf="@+id/height" />
+
+    <com.cesarsicas.dogsjetpack.custom.InformationViewFacelift
+        android:id="@+id/temperament"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.5"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="16dp"
+        app:information_content="@string/temperament_label"
+        app:information_label="@string/temperament_label"
+        app:layout_constraintEnd_toStartOf="@+id/country"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weight" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,7 +10,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import com.cesarsicas.dogsjetpack.R
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_breed_details.*
+import kotlinx.android.synthetic.main.information_view.view.*
 
 /**
  * A simple [Fragment] subclass.
@@ -35,7 +37,12 @@ internal class BreedDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getBreed(args.breedId).observe(this, Observer {
-            someTextToReplace.text = it.name
+            Picasso.get().load(it.thumb).into(breedImage)
+            breedName.text = it.name
+            temperament.informationViewContent.text = it.name
+            height.informationViewContent.text = it.height
+            weight.informationViewContent.text = it.weight
+            country.informationViewContent.text = if(it.originCountry.isNullOrEmpty()) "-" else  it.originCountry
         })
 
     }

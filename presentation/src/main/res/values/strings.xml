@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">DogsJetpack</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="default_information_label">Title</string>
+    <string name="default_information_content">Subtitle</string>
+
+    <string name="breed_name_label">Breed</string>
+    <string name="temperament_label">Temperament</string>
+    <string name="height_label">Height</string>
+    <string name="weight_label">Weight</string>
+    <string name="country_label">Origin Country</string>
 </resources>
