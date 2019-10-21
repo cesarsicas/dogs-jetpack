@@ -6,8 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".features.breeds.details.BreedDetailsFragment">
 
-    <ImageView
-        android:id="@+id/breedImage"
+    <!--    <ImageView-->
+    <!--        android:id="@+id/breedImage"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="250dp"-->
+    <!--        android:layout_marginStart="16dp"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        android:layout_marginEnd="16dp"-->
+    <!--        android:scaleType="fitCenter"-->
+    <!--        android:src="@drawable/ic_pets_black"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/breedImages"
         android:layout_width="0dp"
         android:layout_height="250dp"
         android:layout_marginStart="16dp"
@@ -28,13 +41,12 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/breedImage"
+        app:layout_constraintTop_toBottomOf="@+id/breedImages"
         tools:text="Breed Name" />
 
     <com.cesarsicas.dogsjetpack.custom.InformationViewFacelift
         android:id="@+id/height"
         android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.5"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:paddingLeft="16dp"
@@ -43,12 +55,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/weight"
-        app:layout_constraintTop_toBottomOf="@+id/breedName" />
+        app:layout_constraintTop_toBottomOf="@+id/breedName"
+        app:layout_constraintWidth_percent="0.5" />
 
     <com.cesarsicas.dogsjetpack.custom.InformationViewFacelift
         android:id="@+id/weight"
         android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.5"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:paddingLeft="16dp"
@@ -57,12 +69,12 @@
         app:layout_constraintEnd_toStartOf="@+id/height"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/breedName" />
+        app:layout_constraintTop_toBottomOf="@+id/breedName"
+        app:layout_constraintWidth_percent="0.5" />
 
     <com.cesarsicas.dogsjetpack.custom.InformationViewFacelift
         android:id="@+id/country"
         android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.5"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:paddingLeft="16dp"
@@ -71,12 +83,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/temperament"
-        app:layout_constraintTop_toBottomOf="@+id/height" />
+        app:layout_constraintTop_toBottomOf="@+id/height"
+        app:layout_constraintWidth_percent="0.5" />
 
     <com.cesarsicas.dogsjetpack.custom.InformationViewFacelift
         android:id="@+id/temperament"
         android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.5"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:paddingLeft="16dp"
@@ -85,7 +97,8 @@
         app:layout_constraintEnd_toStartOf="@+id/country"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weight" />
+        app:layout_constraintTop_toBottomOf="@+id/weight"
+        app:layout_constraintWidth_percent="0.5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

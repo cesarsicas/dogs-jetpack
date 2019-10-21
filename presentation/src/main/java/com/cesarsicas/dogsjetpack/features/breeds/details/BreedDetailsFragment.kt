@@ -2,6 +2,7 @@ package com.cesarsicas.dogsjetpack.features.breeds.details
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,13 +38,20 @@ internal class BreedDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getBreed(args.breedId).observe(this, Observer {
-            Picasso.get().load(it.thumb).into(breedImage)
+            //Picasso.get().load(it.thumb).into(breedImage)
             breedName.text = it.name
             temperament.informationViewContent.text = it.name
             height.informationViewContent.text = it.height
             weight.informationViewContent.text = it.weight
             country.informationViewContent.text = if(it.originCountry.isNullOrEmpty()) "-" else  it.originCountry
         })
+
+        viewModel.getImagesLiveData().observe(this, Observer { images ->
+            //Picasso.get().load(it.thumb).into(breedImage)
+            breedImages.adapter = BreedImagesAdapter(fragmentManager!!,  images)
+        })
+
+        viewModel.refreshImages(args.breedId)
 
     }
 

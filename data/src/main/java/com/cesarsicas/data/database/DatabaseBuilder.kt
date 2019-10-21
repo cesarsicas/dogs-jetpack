@@ -70,7 +70,7 @@ object DatabaseBuilder {
         var json: String?
         try {
 
-            val inputStream = applicationContext.assets.open("database_seed.json")
+            val inputStream = applicationContext.assets.open(databaseName)
             val size = inputStream.available()
             val buffer = ByteArray(size)
             inputStream.read(buffer)

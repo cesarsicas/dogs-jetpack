@@ -67,4 +67,6 @@ dependencies {
     //square/picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
 
+    implementation("io.reactivex.rxjava2:rxkotlin:2.4.0")
+
 }
