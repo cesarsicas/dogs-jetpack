@@ -51,7 +51,13 @@ internal class BreedListAdapter(
         if(holder is BreedViewHolder){
             val breed = breedList[position]
             holder.breedName.text = breed.name
-            Picasso.get().load(breed.thumb).into(holder.breedImage)
+
+            if(breed.thumb.isNullOrEmpty().not()){
+                Picasso.get().load(breed.thumb).into(holder.breedImage)
+            }
+            else{
+                holder.breedImage.setImageResource(R.drawable.ic_pets_black)
+            }
 
             holder.container.setOnClickListener{
                 clicked(breedList[position])
