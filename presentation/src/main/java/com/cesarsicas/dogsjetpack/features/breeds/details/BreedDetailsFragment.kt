@@ -37,23 +37,37 @@ internal class BreedDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        showLoading()
+
         viewModel.getBreed(args.breedId).observe(this, Observer {
-            //Picasso.get().load(it.thumb).into(breedImage)
             breedName.text = it.name
             temperament.informationViewContent.text = it.name
             height.informationViewContent.text = it.height
             weight.informationViewContent.text = it.weight
-            country.informationViewContent.text = if(it.originCountry.isNullOrEmpty()) "-" else  it.originCountry
+            country.informationViewContent.text = if(it.originCountry.isEmpty()) "-" else  it.originCountry
         })
 
         viewModel.getImagesLiveData().observe(this, Observer { images ->
-            //Picasso.get().load(it.thumb).into(breedImage)
             breedImages.adapter = BreedImagesAdapter(fragmentManager!!,  images)
+
+            Log.wtf("someday", "sometime")
         })
 
         viewModel.refreshImages(args.breedId)
 
+
+        viewModel.getShowLoadingImage().observe(this, Observer { showImage ->
+
+        })
+
     }
 
+    private fun showLoading(){
+        loading.visibility = View.VISIBLE
+    }
+
+    private fun hideLoading(){
+        loading.visibility = View.GONE
+    }
 
 }
