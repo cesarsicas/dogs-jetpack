@@ -17,6 +17,8 @@ import java.lang.Exception
 
 object DatabaseBuilder {
     private const val databaseName = "dogs_jetpack_db"
+    private const val jsonFile = "database_seed.json"
+
     private var INSTANCE: AppDatabase? = null
 
 
@@ -70,7 +72,7 @@ object DatabaseBuilder {
         var json: String?
         try {
 
-            val inputStream = applicationContext.assets.open(databaseName)
+            val inputStream = applicationContext.assets.open(jsonFile)
             val size = inputStream.available()
             val buffer = ByteArray(size)
             inputStream.read(buffer)
