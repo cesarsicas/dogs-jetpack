@@ -19,8 +19,6 @@ internal class BreedDetailsFragmentViewModel(val app: Application) : AndroidView
     private var liveData: MutableLiveData<List<BreedImage>> = MutableLiveData();
 
 
-    private var showLoading:MutableLiveData<Boolean> = MutableLiveData()
-
     fun getBreed(breedId:Int): LiveData<Breed> {
         val interactorResult = getBreed.execute(BreedsRepositoryImpl(app), breedId)
 
@@ -32,7 +30,6 @@ internal class BreedDetailsFragmentViewModel(val app: Application) : AndroidView
 
     fun getImagesLiveData() = liveData
 
-    fun getShowLoadingImage() =  showLoading
 
     fun refreshImages(breedId:Int) {
 
@@ -40,9 +37,7 @@ internal class BreedDetailsFragmentViewModel(val app: Application) : AndroidView
             .subscribe({ images ->
                 liveData.value = images.map { BreedImage.fromDomainObject(it) }
 
-            }) {
-
-
+                }) {
             }
 
         }

@@ -49,16 +49,10 @@ internal class BreedDetailsFragment : Fragment() {
 
         viewModel.getImagesLiveData().observe(this, Observer { images ->
             breedImages.adapter = BreedImagesAdapter(fragmentManager!!,  images)
-
-            Log.wtf("someday", "sometime")
+            hideLoading()
         })
 
         viewModel.refreshImages(args.breedId)
-
-
-        viewModel.getShowLoadingImage().observe(this, Observer { showImage ->
-
-        })
 
     }
 
