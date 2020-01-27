@@ -14,3 +14,6 @@ Android app that show a list of dogs, made with study purposes
 
 All rights for images are reserved to https://api.thedogapi.com
 
+
+![](example.gif)
+
