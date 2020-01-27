@@ -7,32 +7,33 @@
     tools:context=".features.breeds.details.BreedDetailsFragment">
 
     <include
-        android:visibility="gone"
         android:id="@+id/loading"
-        layout="@layout/loading"/>
+        layout="@layout/loading"
+        android:visibility="gone" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/breedImages"
         android:layout_width="0dp"
-        android:layout_height="250dp"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_pets_black"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.rd.PageIndicatorView
-        app:layout_constraintTop_toBottomOf="@id/breedImages"
         android:id="@+id/pageIndicatorView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_centerInParent="true"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/breedImages"
         app:piv_animationType="scale"
         app:piv_dynamicCount="true"
         app:piv_interactiveAnimation="true"
@@ -107,6 +108,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/weight"
         app:layout_constraintWidth_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.43" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

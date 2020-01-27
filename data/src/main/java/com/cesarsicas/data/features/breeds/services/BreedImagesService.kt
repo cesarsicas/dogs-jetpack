@@ -1,11 +1,8 @@
 package com.cesarsicas.data.features.breeds.services
 
 import com.cesarsicas.data.features.breeds.model.BreedImage
-import io.reactivex.Completable
 import io.reactivex.Single
-import retrofit2.http.Body
 import retrofit2.http.GET
-import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface BreedImagesService {
