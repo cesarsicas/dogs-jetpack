@@ -9,10 +9,10 @@ import androidx.lifecycle.Transformations
 import com.cesarsicas.data.features.breeds.entities.BreedEntity
 
 
-class BreedsRepositoryImpl(private val application:Application) : BreedsRepository {
+class BreedsRepositoryImpl(private val applicationContext: Application) : BreedsRepository {
     override fun getBreeds(): LiveData<List<BreedDomain>> {
 
-        val databaseLiveData =  DatabaseBuilder.build(application).breedDao().getAll()
+        val databaseLiveData =  DatabaseBuilder.build(applicationContext).breedDao().getAll()
 
         return Transformations.map(databaseLiveData) {
                 breeds -> breeds.map { it.toDomainObject() }
@@ -20,7 +20,7 @@ class BreedsRepositoryImpl(private val application:Application) : BreedsReposito
     }
 
     override fun getBreedById(breedId: Int): LiveData<BreedDomain> {
-        val liveData =  DatabaseBuilder.build(application).breedDao().getById(breedId)
+        val liveData =  DatabaseBuilder.build(applicationContext).breedDao().getById(breedId)
 
         return Transformations.map(liveData) {
                 it.toDomainObject()

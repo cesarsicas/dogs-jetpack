@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import com.cesarsicas.domain.features.breeds.BreedsRepository
 import com.cesarsicas.domain.features.breeds.model.BreedDomain
 
-class GetBreedById {
+class GetBreedById(private val repository: BreedsRepository) {
 
-    fun execute(repository: BreedsRepository, breedId:Int): LiveData<BreedDomain> {
+    fun execute( breedId:Int): LiveData<BreedDomain> {
         return repository.getBreedById(breedId)
     }
 
