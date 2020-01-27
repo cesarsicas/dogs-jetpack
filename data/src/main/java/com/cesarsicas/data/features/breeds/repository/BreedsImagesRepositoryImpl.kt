@@ -15,7 +15,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-class BreedsImagesRepositoryImpl(private val application:Application) : BreedImagesRepository {
+class BreedsImagesRepositoryImpl : BreedImagesRepository {
     val baseUrl = "https://api.thedogapi.com/"
     val token = "0d3d9ff9-9e32-4459-b7db-b5d6516ea844"
 
@@ -64,21 +64,4 @@ class BreedsImagesRepositoryImpl(private val application:Application) : BreedIma
             .observeOn(AndroidSchedulers.mainThread())
 
     }
-
-//    override fun getBreeds(): LiveData<List<BreedDomain>> {
-//
-//        val databaseLiveData =  DatabaseBuilder.build(application).breedDao().getAll()
-//
-//        return Transformations.map(databaseLiveData) {
-//                breeds -> breeds.map { it.toDomainObject() }
-//        }
-//    }
-//
-//    override fun getBreedById(breedId: Int): LiveData<BreedDomain> {
-//        val liveData =  DatabaseBuilder.build(application).breedDao().getById(breedId)
-//
-//        return Transformations.map(liveData) {
-//                it.toDomainObject()
-//        }
-//    }
 }

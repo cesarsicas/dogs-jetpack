@@ -75,8 +75,13 @@ dependencies {
 
     implementation 'com.romandanylyk:pageindicatorview:1.0.3'
 
-    // Koin for Kotlin apps
+
+    // Koin for Android
     implementation "org.koin:koin-android:$koin_version"
+    // Koin Android Scope features
+    implementation "org.koin:koin-android-scope:$koin_version"
+    // Koin Android ViewModel features
+    implementation "org.koin:koin-android-viewmodel:$koin_version"
 
 
 }

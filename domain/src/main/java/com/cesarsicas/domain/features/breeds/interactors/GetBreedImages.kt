@@ -4,9 +4,9 @@ import com.cesarsicas.domain.features.breeds.BreedImagesRepository
 import com.cesarsicas.domain.features.breeds.model.BreedImageDomain
 import io.reactivex.Single
 
-class GetBreedImages {
+class GetBreedImages(private val repository: BreedImagesRepository) {
 
-    fun execute(repository: BreedImagesRepository, breedId:Int): Single<List<BreedImageDomain>> {
+    fun execute( breedId:Int): Single<List<BreedImageDomain>> {
         return repository.getImages(breedId)
     }
 

@@ -12,11 +12,13 @@ import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_breed_list.*
 import androidx.recyclerview.widget.GridLayoutManager
 import com.cesarsicas.dogsjetpack.R
+import com.cesarsicas.dogsjetpack.features.breeds.details.BreedDetailsFragmentViewModel
 import com.cesarsicas.dogsjetpack.features.breeds.model.Breed
+import org.koin.android.viewmodel.ext.android.viewModel
 
 
 internal class BreedListFragment : Fragment() {
-    lateinit var viewModel: BreedListFragmentViewModel
+    private val viewModel by viewModel<BreedListFragmentViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,8 +30,6 @@ internal class BreedListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel = ViewModelProviders.of(this)[BreedListFragmentViewModel::class.java]
 
         val layoutManager = GridLayoutManager(activity, 2)
         breedsList.layoutManager = layoutManager
