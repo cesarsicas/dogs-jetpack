@@ -24,7 +24,7 @@ class DogsJetPackApplication : Application() {
         /* Setup Koin */
         startKoin {
             androidContext(appContext)
-            modules(listOf(appModule, dataModule, domainModule, presentationModule))
+            modules(listOf(networkModule, dataModule, domainModule, presentationModule))
         }
 
     }
