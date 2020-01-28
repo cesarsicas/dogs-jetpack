@@ -6,8 +6,6 @@ import com.cesarsicas.domain.features.breeds.model.BreedDomain
 
 class GetBreeds(private val repository: BreedsRepository) {
 
-    fun execute(): LiveData<List<BreedDomain>> {
-        return repository.getBreeds()
-    }
+    fun execute(): LiveData<List<BreedDomain>> = repository.getBreeds()
 
 }

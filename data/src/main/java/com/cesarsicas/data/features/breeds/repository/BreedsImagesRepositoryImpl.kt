@@ -8,8 +8,7 @@ class BreedsImagesRepositoryImpl(private val service: BreedImagesService) : Bree
 
     override suspend fun getImages(breedId:Int): List<BreedImageDomain> {
 
-        return service.getImages("json", true, 10, breedId)
-            .map { response ->
+        return service.getImages("json", true, 10, breedId).map { response ->
                 response.asDomainObject()
             }
     }

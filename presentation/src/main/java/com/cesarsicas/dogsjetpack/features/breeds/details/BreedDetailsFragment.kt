@@ -47,7 +47,7 @@ internal class BreedDetailsFragment : Fragment() {
             country.informationViewContent.text = if(it.originCountry.isEmpty()) "-" else  it.originCountry
         })
 
-        viewModel.getImagesLiveData().observe(this, Observer { images ->
+        viewModel.images?.observe(this, Observer { images ->
             breedImages.adapter = BreedImagesAdapter(fragmentManager!!,  images)
             hideLoading()
         })
