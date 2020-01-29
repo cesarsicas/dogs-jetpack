@@ -6,10 +6,19 @@ import com.cesarsicas.domain.features.breeds.model.BreedImageDomain
 
 class BreedsImagesRepositoryImpl(private val service: BreedImagesService) : BreedImagesRepository {
 
-    override suspend fun getImages(breedId:Int): List<BreedImageDomain> {
+    override suspend fun getImages(breedId:Int): List<BreedImageDomain>?{
 
-        return service.getImages("json", true, 10, breedId).map { response ->
-                response.asDomainObject()
+        return try {
+            val response = service.getImages("json", true, 10, breedId)
+            if (response.isSuccessful) {
+               response.body()?.map { it.asDomainObject() }
             }
+            else{
+                error(" ${response.code()} ${response.message()}")
+            }
+        } catch (e: Exception) {
+            error(e.message ?: e.toString())
+        }
+
     }
 }
