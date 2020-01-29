@@ -11,6 +11,7 @@ Android app that show a list of dogs, made with study purposes
   - Live data
   - Navigation Component
   - Koin Injection
+  - Coroutines
 
 All rights for images are reserved to https://api.thedogapi.com
 
