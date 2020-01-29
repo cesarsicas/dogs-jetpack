@@ -6,8 +6,6 @@ import com.cesarsicas.domain.features.breeds.model.BreedDomain
 
 class GetBreedById(private val repository: BreedsRepository) {
 
-    fun execute( breedId:Int): LiveData<BreedDomain> {
-        return repository.getBreedById(breedId)
-    }
+    fun execute( breedId:Int): LiveData<BreedDomain> = repository.getBreedById(breedId)
 
 }

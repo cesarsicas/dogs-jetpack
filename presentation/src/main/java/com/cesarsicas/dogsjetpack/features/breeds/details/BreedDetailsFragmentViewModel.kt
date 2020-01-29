@@ -5,35 +5,34 @@ import com.cesarsicas.dogsjetpack.features.breeds.model.Breed
 import com.cesarsicas.dogsjetpack.features.breeds.model.BreedImage
 import com.cesarsicas.domain.features.breeds.interactors.GetBreedById
 import com.cesarsicas.domain.features.breeds.interactors.GetBreedImages
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 internal class BreedDetailsFragmentViewModel(
                 private val getBreedById: GetBreedById,
                 private val getBreedImages:GetBreedImages): ViewModel() {
 
-    private var liveData: MutableLiveData<List<BreedImage>> = MutableLiveData()
+    var images: MutableLiveData<List<BreedImage>> =  MutableLiveData()
 
+    private val uiScope = CoroutineScope(Dispatchers.Main)
 
-    fun getBreed(breedId:Int): LiveData<Breed> {
+    fun getBreed(breedId: Int): LiveData<Breed> {
         val interactorResult = getBreedById.execute(breedId)
 
         return Transformations.map(interactorResult) {
-                Breed.fromDomainObject(it)
+            Breed.fromDomainObject(it)
         }
 
     }
 
-    fun getImagesLiveData() = liveData
 
-
-    fun refreshImages(breedId:Int) {
-
-        val disposable = getBreedImages.execute(breedId)
-            .subscribe({ images ->
-                liveData.value = images.map { BreedImage.fromDomainObject(it) }
-
-                }) {
-            }
+    fun refreshImages(breedId: Int) {
+        uiScope.launch {
+            val result = getBreedImages.execute(breedId)?.map { BreedImage.fromDomainObject(it) }
+            images.postValue(result)
         }
+    }
 }
 
 

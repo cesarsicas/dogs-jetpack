@@ -18,7 +18,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
@@ -63,7 +62,6 @@ fun providesOkHttpClient(headerInterceptor: HeaderInterceptor): OkHttpClient {
 inline fun <reified T> createWebService(okHttpClient: OkHttpClient , url: String): T {
     return Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
-        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .baseUrl(url)
         .client(okHttpClient)
         .build()
